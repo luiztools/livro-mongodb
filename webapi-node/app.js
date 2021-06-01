@@ -9,18 +9,16 @@ async function connect(){
 
 const express = require('express');
 const app = express();         
-const bodyParser = require('body-parser');
 const port = 3000; //porta padrão
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 //definindo as rotas
 const router = express.Router();
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
 /* GET all customers */
-router.get('/clientes/:id?', async function(req, res, next) {
+router.get('/clientes/:id?', async (req, res, next) => {
     try{
       const db = await connect();
       if(req.params.id)
@@ -35,7 +33,7 @@ router.get('/clientes/:id?', async function(req, res, next) {
 })
 
 /* POST new customer */
-router.post('/clientes', async function(req, res, next){
+router.post('/clientes', async (req, res, next) => {
     try{
       const customer = req.body;
       const db = await connect();
@@ -48,7 +46,7 @@ router.post('/clientes', async function(req, res, next){
 })
 
 /* PUT old customer */
-router.put('/clientes/:id', async function(req, res, next){
+router.put('/clientes/:id', async (req, res, next) => {
     try{
       const customer = req.body;
       const db = await connect();
@@ -62,7 +60,7 @@ router.put('/clientes/:id', async function(req, res, next){
 })
 
 /* PATCH old customer */
-router.patch('/clientes/:id', async function(req, res, next){
+router.patch('/clientes/:id', async (req, res, next) => {
     try{
       const customer = req.body;
       const db = await connect();
@@ -76,7 +74,7 @@ router.patch('/clientes/:id', async function(req, res, next){
 })
 
 /* DELETE customer */
-router.delete('/clientes/:id', async function(req, res, next){
+router.delete('/clientes/:id', async (req, res, next) => {
     try{
       const db = await connect();
       res.json(await db.collection("customers").deleteOne({_id: new ObjectId(req.params.id)}));
