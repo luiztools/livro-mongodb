@@ -2,7 +2,7 @@
 npm init
 
 //5.2
-npm install -S express mongodb body-parser
+npm install express mongodb
 
 //5.3
 const {MongoClient} = require("mongodb");
@@ -18,12 +18,10 @@ async function connect(){
 //5.4
 const express = require('express');
 const app = express();         
-const bodyParser = require('body-parser');
 const port = 3000; //porta padrão
 
 //5.5
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 //5.6
 //definindo as rotas
@@ -40,7 +38,7 @@ console.log('API funcionando!')
 node app
 
 //5.9
-router.get('/clientes', async function(req, res, next) {
+router.get('/clientes', async (req, res, next) => {
     try{
       const db = await connect();
       res.json(await db.collection("customers").find().toArray());
@@ -57,7 +55,7 @@ const {MongoClient, ObjectId} = require("mongodb");
 module.exports = {findCustomers, findCustomer}
 
 //5.11
-router.get('/clientes/:id?', async function(req, res, next) {
+router.get('/clientes/:id?', async (req, res, next) => {
     try{
       const db = await connect();
       if(req.params.id)
@@ -72,7 +70,7 @@ router.get('/clientes/:id?', async function(req, res, next) {
 })
 
 //5.12
-router.post('/clientes', async function(req, res, next){
+router.post('/clientes', async (req, res, next) => {
     try{
       const customer = req.body;
       const db = await connect();
@@ -85,7 +83,7 @@ router.post('/clientes', async function(req, res, next){
 })
 
 //5.13
-router.put('/clientes/:id', async function(req, res, next){
+router.put('/clientes/:id', async (req, res, next) => {
     try{
       const customer = req.body;
       const db = await connect();
@@ -98,7 +96,7 @@ router.put('/clientes/:id', async function(req, res, next){
 })
 
 //5.14
-router.patch('/clientes/:id', async function(req, res, next){
+router.patch('/clientes/:id', async (req, res, next) => {
     try{
       const customer = req.body;
       const db = await connect();
@@ -112,7 +110,7 @@ router.patch('/clientes/:id', async function(req, res, next){
 })
 
 //5.15
-router.delete('/clientes/:id', async function(req, res, next){
+router.delete('/clientes/:id', async (req, res, next) => {
     try{
       const db = await connect();
       res.json(await db.collection("customers").deleteOne({_id: new ObjectId(req.params.id)}));
