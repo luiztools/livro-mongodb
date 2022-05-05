@@ -8,7 +8,7 @@
 
 //5.26
 custArray = [{"Nome":"Luiz Júnior", "Profissao":"Professor", "Tags":["LUIZ","JUNIOR","PROFESSOR"]},{"Nome":"Luiz Duarte", "Profissao":"Blogueiro", "tags":["LUIZ","DUARTE","BLOGUEIRO"]}]
-db.Customer.insert(custArray);
+db.Customer.insertMany(custArray);
 
 //5.27
 db.Customer.createIndex({ "Tags": 1 });

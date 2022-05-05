@@ -17,4 +17,4 @@ c:\mongo\bin> mongo
 > db.customers.find()
 
 //2.7
-> db.customers.insert({ nome: "Luiz", idade: 29 })
+> db.customers.insertOne({ nome: "Luiz", idade: 29 })

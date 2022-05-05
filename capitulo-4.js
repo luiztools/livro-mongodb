@@ -102,7 +102,7 @@ db.artigos.createIndex({url: 1});
 }
 
 //4.10
-db.artigos.insert({ titulo: "Artigo 1", autor: { _id: ObjectId("456def"), nome: "Luiz" }, tags: null })
+db.artigos.insertOne({ titulo: "Artigo 1", autor: { _id: ObjectId("456def"), nome: "Luiz" }, tags: null })
 
 //4.11
 db.artigos.find({"autor.nome": "Luiz"})
@@ -114,10 +114,10 @@ db.artigos.update({_id: ObjectId("456def")},{ titulo: "Artigo 1", autor: { nome:
 db.artigos.update({"autor.nome":"Luiz"},{$set: {"autor.nome": "Luiz Fernando"}})
 
 //4.14
-db.artigos.insert({ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: ["NodeJs", "MongoDB"] })
+db.artigos.insertOne({ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: ["NodeJs", "MongoDB"] })
 
 //4.15
-db.artigos.insert({ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: ["NodeJs", "MongoDB"], categorias: [{_id:ObjectId("abc123"), nome: "Desenvolvimento"}] })
+db.artigos.insertOne({ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: ["NodeJs", "MongoDB"], categorias: [{_id:ObjectId("abc123"), nome: "Desenvolvimento"}] })
 
 //4.16
 {

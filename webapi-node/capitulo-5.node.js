@@ -5,11 +5,11 @@ npm init
 npm install express mongodb
 
 //5.3
-const {MongoClient} = require("mongodb");
-async function connect(){
-  if(global.db) return global.db;
-  const conn = await MongoClient.connect("mongodb://localhost:27017/", { useUnifiedTopology: true });
-  if(!conn) return new Error("Can't connect");
+const { MongoClient } = require("mongodb");
+async function connect() {
+  if (global.db) return global.db;
+  const conn = await MongoClient.connect("mongodb://localhost:27017/");
+  if (!conn) return new Error("Can't connect");
   global.db = await conn.db("workshop");
   return global.db;
 }
@@ -17,7 +17,7 @@ async function connect(){
 
 //5.4
 const express = require('express');
-const app = express();         
+const app = express();
 const port = 3000; //porta padrão
 
 //5.5
@@ -39,84 +39,84 @@ node app
 
 //5.9
 router.get('/clientes', async (req, res, next) => {
-    try{
-      const db = await connect();
-      res.json(await db.collection("customers").find().toArray());
-    }
-    catch(ex){
-      console.log(ex);
-      res.status(400).json({erro: `${ex}`});
-    }
+  try {
+    const db = await connect();
+    res.json(await db.collection("customers").find().toArray());
+  }
+  catch (ex) {
+    console.log(ex);
+    res.status(400).json({ erro: `${ex}` });
+  }
 })
 
 //5.10
-const {MongoClient, ObjectId} = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
-module.exports = {findCustomers, findCustomer}
+module.exports = { findCustomers, findCustomer }
 
 //5.11
 router.get('/clientes/:id?', async (req, res, next) => {
-    try{
-      const db = await connect();
-      if(req.params.id)
-        res.json(await db.collection("customers").findOne({_id: new ObjectId(req.params.id)}));
-      else
-        res.json(await db.collection("customers").find().toArray());
-    }
-    catch(ex){
-      console.log(ex);
-      res.status(400).json({erro: `${ex}`});
-    }
+  try {
+    const db = await connect();
+    if (req.params.id)
+      res.json(await db.collection("customers").findOne({ _id: new ObjectId(req.params.id) }));
+    else
+      res.json(await db.collection("customers").find().toArray());
+  }
+  catch (ex) {
+    console.log(ex);
+    res.status(400).json({ erro: `${ex}` });
+  }
 })
 
 //5.12
 router.post('/clientes', async (req, res, next) => {
-    try{
-      const customer = req.body;
-      const db = await connect();
-      res.json(await db.collection("customers").insert(customer));
-    }
-    catch(ex){
-      console.log(ex);
-      res.status(400).json({erro: `${ex}`});
-    }
+  try {
+    const customer = req.body;
+    const db = await connect();
+    res.json(await db.collection("customers").insert(customer));
+  }
+  catch (ex) {
+    console.log(ex);
+    res.status(400).json({ erro: `${ex}` });
+  }
 })
 
 //5.13
 router.put('/clientes/:id', async (req, res, next) => {
-    try{
-      const customer = req.body;
-      const db = await connect();
-      res.json(await db.collection("customers").update({_id: new ObjectId(req.params.id)}, customer));
-    }
-    catch(ex){
-      console.log(ex);
-      res.status(400).json({erro: `${ex}`});
-    }
+  try {
+    const customer = req.body;
+    const db = await connect();
+    res.json(await db.collection("customers").updateOne({ _id: new ObjectId(req.params.id) }, { $set: customer }));
+  }
+  catch (ex) {
+    console.log(ex);
+    res.status(400).json({ erro: `${ex}` });
+  }
 })
 
 //5.14
 router.patch('/clientes/:id', async (req, res, next) => {
-    try{
-      const customer = req.body;
-      const db = await connect();
-      const id = {_id: new ObjectId(req.params.id)};
-      res.json(await db.collection("customers").updateOne(id, {$set: customer}));
-    }
-    catch(ex){
-      console.log(ex);
-      res.status(400).json({erro: `${ex}`});
-    }
+  try {
+    const customer = req.body;
+    const db = await connect();
+    const id = { _id: new ObjectId(req.params.id) };
+    res.json(await db.collection("customers").updateOne(id, { $set: customer }));
+  }
+  catch (ex) {
+    console.log(ex);
+    res.status(400).json({ erro: `${ex}` });
+  }
 })
 
 //5.15
 router.delete('/clientes/:id', async (req, res, next) => {
-    try{
-      const db = await connect();
-      res.json(await db.collection("customers").deleteOne({_id: new ObjectId(req.params.id)}));
-    }
-    catch(ex){
-      console.log(ex);
-      res.status(400).json({erro: `${ex}`});
-    }
+  try {
+    const db = await connect();
+    res.json(await db.collection("customers").deleteOne({ _id: new ObjectId(req.params.id) }));
+  }
+  catch (ex) {
+    console.log(ex);
+    res.status(400).json({ erro: `${ex}` });
+  }
 })

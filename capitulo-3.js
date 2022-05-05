@@ -1,9 +1,9 @@
 //3.1
-db.customers.insert({ nome: "Luiz", idade: 29 })
+db.customers.insertOne({ nome: "Luiz", idade: 29 })
 
 //3.2
 custArray = [{ nome : "Fernando", idade : 29 }, { nome : "Teste", uf : "RS" }]
-db.customers.insert(custArray)
+db.customers.insertMany(custArray)
 
 //3.3
 db.customers.find().pretty()
