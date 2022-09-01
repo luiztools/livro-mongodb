@@ -45,7 +45,7 @@ db.customers.find({nome:"Luiz"}).count()
 db.customers.find({nome: "Luiz"}, {idade: 1})
 
 //3.16
-db.customers.update({nome: "Luiz"}, {nome: "Luiz", idade: 29, uf: "RS"})
+db.customers.replaceOne({nome: "Luiz"}, {nome: "Luiz", idade: 32, uf: "RS"})
 
 //3.17
 db.customers.updateOne({_id: ObjectId("59ab46e433959e2724be2cbd")}, {$set: {idade: 28}})

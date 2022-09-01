@@ -108,10 +108,10 @@ db.artigos.insertOne({ titulo: "Artigo 1", autor: { _id: ObjectId("456def"), nom
 db.artigos.find({"autor.nome": "Luiz"})
 
 //4.12
-db.artigos.update({_id: ObjectId("456def")},{ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: null })
+db.artigos.replaceOne({_id: ObjectId("456def")},{ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: null })
 
 //4.13
-db.artigos.update({"autor.nome":"Luiz"},{$set: {"autor.nome": "Luiz Fernando"}})
+db.artigos.updateOne({"autor.nome":"Luiz"},{$set: {"autor.nome": "Luiz Fernando"}})
 
 //4.14
 db.artigos.insertOne({ titulo: "Artigo 1", autor: { nome: "Luiz" }, tags: ["NodeJs", "MongoDB"] })

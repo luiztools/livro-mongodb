@@ -2,7 +2,7 @@
 C:\mongo\bin> mongod --dbpath C:\mongo\data
 
 //2.2
-c:\mongo\bin> mongo
+c:\mongo\bin> mongosh
 
 //2.3
 > show databases
@@ -17,4 +17,4 @@ c:\mongo\bin> mongo
 > db.customers.find()
 
 //2.7
-> db.customers.insertOne({ nome: "Luiz", idade: 29 })
+> db.customers.insertOne({ nome: "Luiz", idade: 34 })

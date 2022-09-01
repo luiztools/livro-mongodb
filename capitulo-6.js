@@ -20,7 +20,7 @@ db.createUser({user: "admin", pwd: "senha", roles: ["readWrite", "dbAdmin"]})
 C:\mongo\bin> mongod --dbPath caminhoDoSeuBanco --auth
 
 //6.8
-C:\mongo\bin> mongo admin -u <usuario> -p <senha>
+C:\mongo\bin> mongosh admin -u <usuario> -p <senha>
 
 //6.9
 db.changeUserPassword("usuario", "novaSenha")
@@ -53,7 +53,7 @@ mongod --dbpath /replication/data/ -port 27018 --replSet "rs0"
 mongod --dbpath /replication/data2/ -port 27019 --replSet "rs0"
 
 //6.19
-mongo -port 27018
+mongosh -port 27018
 
 //6.20
 rs.initiate( { 
