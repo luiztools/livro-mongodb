@@ -51,7 +51,7 @@ db.customers.replaceOne({nome: "Luiz"}, {nome: "Luiz", idade: 32, uf: "RS"})
 db.customers.updateOne({_id: ObjectId("59ab46e433959e2724be2cbd")}, {$set: {idade: 28}})
 
 //3.18
-db.customers.updateOne({nome: "LuizTools"}, {nome: "LuizTools", uf: "RS"}, {upsert: true})
+db.customers.updateOne({nome: "LuizTools"}, {$set: {nome: "LuizTools", uf: "RS"} }, {upsert: true})
 
 //3.19
 db.customers.deleteMany({nome: "Luiz"})
