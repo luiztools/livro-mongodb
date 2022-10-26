@@ -52,6 +52,8 @@ mongod --dbpath /replication/data/ -port 27018 --replSet "rs0"
 //6.18
 mongod --dbpath /replication/data2/ -port 27019 --replSet "rs0"
 
+mongod --dbpath /replication/data2/ -port 27020 --replSet "rs0"
+
 //6.19
 mongosh -port 27018
 
@@ -59,12 +61,14 @@ mongosh -port 27018
 rs.initiate( { 
 _id: "rs0", 
 version: 1, 
-members: [ { _id: 0, host : "localhost:27018" }, { _id: 1, host : "localhost:27019" } ]
+members: [ { _id: 0, host : "localhost:27018" }, { _id: 1, host : "localhost:27019" }, { _id: 2, host : "localhost:27020" } ]
  } )
+
+ rs.add({ _id: 3, host : "localhost:27021" })
 
 
 //6.21
-rs.slaveOk()
+db.getMongo().setReadPref("primaryPreferred")
 
 //6.22
 mongodb://localhost:27018,localhost:27019/?replicaSet=rs0
