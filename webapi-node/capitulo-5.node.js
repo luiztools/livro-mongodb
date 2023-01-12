@@ -1,5 +1,5 @@
 //5.1
-npm init
+npm init - y
 
 //5.2
 npm install express mongodb
@@ -8,8 +8,9 @@ npm install express mongodb
 const { MongoClient } = require("mongodb");
 async function connect() {
   if (global.db) return global.db;
-  const conn = await MongoClient.connect("mongodb://localhost:27017/");
-  if (!conn) return new Error("Can't connect");
+  const client = new MongoClient("mongodb://127.0.0.1:27017/");
+  await client.connect();
+
   global.db = await conn.db("workshop");
   return global.db;
 }
