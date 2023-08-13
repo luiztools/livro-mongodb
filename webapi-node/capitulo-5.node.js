@@ -11,7 +11,7 @@ async function connect() {
   const client = new MongoClient("mongodb://127.0.0.1:27017/");
   await client.connect();
 
-  global.db = await conn.db("workshop");
+  global.db = await client.db("workshop");
   return global.db;
 }
 
