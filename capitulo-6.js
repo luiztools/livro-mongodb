@@ -1,5 +1,5 @@
 //6.1
-C:\mongodb\bin> db.clientes.renameCollection("clientes")
+db.clientes.renameCollection("clientes")
 
 //6.2
 db.clientes.updateOne({_id: ObjectId("123abc")}, {$set: {novoCampo: valor}})
@@ -17,10 +17,10 @@ db.customers.find().explain("executionStats")
 db.createUser({user: "admin", pwd: "senha", roles: ["readWrite", "dbAdmin"]})
 
 //6.7
-C:\mongo\bin> mongod --dbPath caminhoDoSeuBanco --auth
+mongod --dbPath caminhoDoSeuBanco --auth
 
 //6.8
-C:\mongo\bin> mongosh admin -u <usuario> -p <senha>
+mongosh admin -u <usuario> -p <senha>
 
 //6.9
 db.changeUserPassword("usuario", "novaSenha")
@@ -29,19 +29,19 @@ db.changeUserPassword("usuario", "novaSenha")
 db.dropUser("usuario")
 
 //6.11
-C:\mongodb\bin> mongodump --out "C:\mongodb\backup"
+mongodump --out "C:\mongodb\backup"
 
 //6.12
-C:\mongodb\bin> mongodump -h tatooine.mongodb.umbler.com:27017 --out "C:\mongodb\backup"
+mongodump -h tatooine.mongodb.umbler.com:27017 --out "C:\mongodb\backup"
 
 //6.13
-C:\mongodb\bin> mongodump -h tatooine.mongodb.umbler.com:27017 -u luiztools -p mudar123 --out "C:\mongodb\backup"
+mongodump -h tatooine.mongodb.umbler.com:27017 -u luiztools -p mudar123 --out "C:\mongodb\backup"
 
 //6.14
-C:\mongodb\bin> mongorestore -h tatooine.mongodb.umbler.com:27017 -u luiztools -p mudar123 "C:\mongodb\backup\database"
+mongorestore -h tatooine.mongodb.umbler.com:27017 -u luiztools -p mudar123 "C:\mongodb\backup\database"
 
 //6.15
-C:\mongo\bin> mongoimport -h server:port -u user -p password -d databaseName -c collectionName --type csv --file caminhoDoArquivo.csv --headerline
+mongoimport -h server:port -u user -p password -d databaseName -c collectionName --type csv --file caminhoDoArquivo.csv --headerline
 
 //6.16
 iconv -f ISO-8859-1 -t utf-8 origem.csv > destino.csv

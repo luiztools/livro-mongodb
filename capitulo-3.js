@@ -27,7 +27,7 @@ db.customers.find({nome: "Luiz", idade: {$gte: 18}})
 db.customers.find({nome: { $regex: /a/i }, idade: {$gte: 18}})
 
 //3.10
-db.customers.find({$or: [{idade: 29}, {nome: "Teste"}]})
+db.customers.find({$or: [{idade: 36}, {nome: "Teste"}]})
 
 //3.11
 db.customers.find().skip(1).limit(10)
@@ -36,10 +36,10 @@ db.customers.find().skip(1).limit(10)
 db.customers.find().sort({idade: 1})
 
 //3.13
-db.customers.count()
+db.customers.countDocuments()
 
 //3.14
-db.customers.find({nome:"Luiz"}).count()
+db.customers.find({nome:"Luiz"}).countDocuments()
 
 //3.15
 db.customers.find({nome: "Luiz"}, {idade: 1})
